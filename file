@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+    
+    environment {
+        SONAR_TOKEN = credentials('sonarcloud-token') // Define your SonarCloud token here
+    }
+    
+    tools {
+        maven 'Maven 3.6.3' // Use the name you defined in Global Tool Configuration
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Build and Test') {
+            steps {
+                script {
+                    // Run your Maven build and test
+                    sh "mvn clean verify"
+                }
+            }
+        }
+        
+        stage('SonarCloud Analysis') {
+            steps {
+                script {
+                    // Run SonarCloud analysis
+                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=your_project_key -Dsonar.organization=your_organization -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN}"
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            // Clean up and archive results if needed
+        }
+    }
+}
