@@ -7,7 +7,7 @@ pipeline{
             steps {
                 script {
                     // Run SonarQube analysis
-                    withSonarQubeEnv('SonarQube') { // 'SonarQube' should match the name configured in Jenkins
+                    withSonarQubeEnv('JENKINS_SONAR_TOKEN1') { // 'SonarQube' should match the name configured in Jenkins
                         sh 'mvn sonar:sonar'
                     }
                 }
