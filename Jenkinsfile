@@ -1,5 +1,14 @@
 pipeline{
-    agent any 
+    agent any
+	pipeline {
+    agent any
+
+    environment {
+        SONARQUBE_URL = 'http://16.170.141.19:9000'
+        SONARQUBE_TOKEN = credentials('SONAR_TOKEN') // Replace with your SonarQube token ID
+       // MAVEN_HOME = tool name: 'Maven 3', type: 'maven' // Ensure this matches the Maven installation name in Jenkins
+    }
+
     tools{
         maven "Maven_3_5_2"
     }
