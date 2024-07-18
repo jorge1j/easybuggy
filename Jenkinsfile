@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        SONAR_TOKEN = credentials('sonarcloud-token') // Define your SonarCloud token here
+        SONAR_TOKEN = credentials('SonarToken') // Define your SonarCloud token here
         SNYK_TOKEN = credentials('snyk-token')       // Snyk API token
     }
     
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     // Run SonarCloud analysis
-                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=your_project_key -Dsonar.organization=your_organization -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN}"
+                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=geeteck -Dsonar.organization=geeteck -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN}"
                 }
             }
         }
