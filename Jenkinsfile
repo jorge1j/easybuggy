@@ -3,6 +3,7 @@ pipeline {
     
     environment {
         SONAR_TOKEN = credentials('sonarcloud-token') // Define your SonarCloud token here
+        SNYK_TOKEN = credentials('snyk-token')       // Snyk API token
     }
     
     tools {
