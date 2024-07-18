@@ -7,7 +7,8 @@ pipeline{
 		SONARQUBE_URL = 'http://16.170.141.19:9000/'
         SONARQUBE_TOKEN = credentials('JENKINS_SONAR_TOKEN1')
 	}
-           stage('SonarQube Analysis') {
+     stages{
+         stage('SonarQube Analysis') {
             steps {
                 script {
                     // Run SonarQube analysis
