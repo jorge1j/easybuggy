@@ -1,14 +1,15 @@
-pipeline{
+pipeline {
     agent any
-	
-    tools{
-        maven "Maven_3_5_2"   
+    
+    environment {
+        SONAR_TOKEN = credentials('sonarcloud-token') // Define your SonarCloud token here
     }
-	environment {
-		SONARQUBE_SCANNER_HOME = tool name: 'sonarqube Scanner',
-	type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-	}
-  
+    
+    tools {
+        maven 'Maven 3.6.3' // Use the name you defined in Global Tool Configuration
+    }
+    
+    stages {
 	  stage('SonarCloud Analysis') {
             steps {
                 script {
