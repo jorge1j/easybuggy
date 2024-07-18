@@ -3,7 +3,7 @@ pipeline{
 
     environment {
         SONARQUBE_URL = 'http://16.170.141.19:9000'
-        SONARQUBE_TOKEN = credentials('SONAR') // Replace with your SonarQube token ID
+        SONARQUBE_TOKEN = credentials('da505e3f8f87f0b77867ff4b229bd497a4dc891aSONAR') // Replace with your SonarQube token ID
        // MAVEN_HOME = tool name: 'Maven 3', type: 'maven' // Ensure this matches the Maven installation name in Jenkins
     }
 
