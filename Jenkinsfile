@@ -6,7 +6,7 @@ pipeline {
     }
     
     tools {
-        maven 'Maven 3.6.3' // Use the name you defined in Global Tool Configuration
+        maven 'Maven_3_5_3' // Use the name you defined in Global Tool Configuration
     }
     
     stages {
