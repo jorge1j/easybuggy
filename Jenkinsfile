@@ -1,7 +1,5 @@
 pipeline{
     agent any
-	pipeline {
-    agent any
 
     environment {
         SONARQUBE_URL = 'http://16.170.141.19:9000'
