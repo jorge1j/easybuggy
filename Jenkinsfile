@@ -3,16 +3,16 @@ pipeline{
     tools{
         maven "Maven_3_5_2"
     }
-  //  stages{
-//         stage('CompileandRunSonarAnalysis') {
-//             steps {	
-// 		    withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
-//     sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=geeteck -Dsonar.organization=geeteck -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN'
-// }
-
-		
-// 			}
-//         } 
+   stage('SonarQube Analysis') {
+            steps {
+                script {
+                    // Run SonarQube analysis
+                    withSonarQubeEnv('SonarQube') { // 'SonarQube' should match the name configured in Jenkins
+                        sh 'mvn sonar:sonar'
+                    }
+                }
+            }
+        
 	    stage('RunSCAAnalysisUsingSnyk') {
                steps {		
 	          withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
