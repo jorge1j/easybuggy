@@ -2,21 +2,22 @@ pipeline{
     agent any
 	
     tools{
-        maven "Maven_3_5_2"
-	sonarqubeScanner 'Sonarqube'    
+        maven "Maven_3_5_2"   
     }
 	environment {
 		SONARQUBE_SCANNER_HOME = tool name: 'sonarqube Scanner',
 	type: 'hudson.plugins.sonar.SonarRunnerInstallation'
 	}
-     stages{
-         stage('SonarQube Analysis') {
+  
+	  stage('SonarCloud Analysis') {
             steps {
-                    withSonarQubeEnv('Sonarqube') { // 'SonarQube' should match the name configured in Jenkins
-                        sh '${env.SONARQUBE_SCANNER_HOME}/bin/sonar-scanner"
-                    }
+                script {
+                    // Run SonarCloud analysis
+                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=your_project_key -Dsonar.organization=your_organization -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN}"
                 }
             }
+        }
+    }
         
 	  //   stage('RunSCAAnalysisUsingSnyk') {
    //             steps {		
