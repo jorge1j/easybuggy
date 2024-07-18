@@ -12,7 +12,7 @@ pipeline{
      stages{
          stage('SonarQube Analysis') {
             steps {
-                    withSonarQubeEnv('JENKINS_SONAR_TOKEN1') { // 'SonarQube' should match the name configured in Jenkins
+                    withSonarQubeEnv('Sonarqube') { // 'SonarQube' should match the name configured in Jenkins
                         sh '${env.SONARQUBE_SCANNER_HOME}/bin/sonar-scanner"
                     }
                 }
