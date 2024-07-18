@@ -1,22 +1,19 @@
 pipeline{
     agent any
-
-    environment {
-        SONARQUBE_URL = 'http://16.170.141.19:9000'
-        SONARQUBE_TOKEN = credentials('da505e3f8f87f0b77867ff4b229bd497a4dc891aSONAR') // Replace with your SonarQube token ID
-       // MAVEN_HOME = tool name: 'Maven 3', type: 'maven' // Ensure this matches the Maven installation name in Jenkins
-    }
-
+	
     tools{
         maven "Maven_3_5_2"
+	sonarqubeScanner 'Sonarqube'    
     }
+	environment {
+		SONARQUBE_SCANNER_HOME = tool name: 'sonarqube Scanner',
+	type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+	}
      stages{
          stage('SonarQube Analysis') {
             steps {
-                script {
-                    // Run SonarQube analysis
-                    withSonarQubeEnv('SONAR') { // 'SonarQube' should match the name configured in Jenkins
-                        sh 'mvn sonar:sonar'
+                    withSonarQubeEnv('JENKINS_SONAR_TOKEN1') { // 'SonarQube' should match the name configured in Jenkins
+                        sh '${env.SONARQUBE_SCANNER_HOME}/bin/sonar-scanner"
                     }
                 }
             }
