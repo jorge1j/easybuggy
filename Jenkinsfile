@@ -2,8 +2,8 @@ pipeline {
     agent any
     
     environment {
-        SONAR_TOKEN = credentials('SonarToken') // Define your SonarCloud token here
-        SNYK_TOKEN = credentials('snyk-token')       // Snyk API token
+        SONAR_TOKEN = credentials('SONAR_TOKEN') // Define your SonarCloud token here
+        SNYK_TOKEN = credentials('SNYK_TOKEN')       // Snyk API token
     }
     
     tools {
