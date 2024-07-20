@@ -11,23 +11,23 @@ pipeline {
     }
     
     stages {
-	  stage('SonarCloud Analysis') {
-            steps {
-                script {
-                    // Run SonarCloud analysis
-                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=geeteck -Dsonar.organization=geeteck -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN}"
-                }
-            }
-        }
-    }
+	  // stage('SonarCloud Analysis') {
+   //          steps {
+   //              script {
+   //                  // Run SonarCloud analysis
+   //                  sh "mvn clean verify sonar:sonar -Dsonar.projectKey=geeteck -Dsonar.organization=geeteck -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN}"
+   //              }
+   //          }
+   //      }
+   //  }
         
-	  //   stage('RunSCAAnalysisUsingSnyk') {
-   //             steps {		
-	  //         withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
-			// 		sh 'mvn snyk:test -fn'
-			// 	}
-			// }
-   //  }	
+	    stage('RunSCAAnalysisUsingSnyk') {
+               steps {		
+	          withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
+					sh 'mvn snyk:test -fn'
+				}
+			}
+    }	
    //      stage('Build'){
    //          steps{
    //              withDockerRegistry(
