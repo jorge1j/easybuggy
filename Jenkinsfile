@@ -43,7 +43,7 @@ pipeline {
         stage('Push'){
             steps{
                 script{
-                    docker.withRegistry("https://public.ecr.aws/h2j5b7s9", "ecr:us-east-1:aws-credentials"){
+                    docker.withRegistry("https://public.ecr.aws/h2j5b7s9/george", "ecr:us-east-1:aws-credentials"){
                         app.push("latest")
                     }
                    }
