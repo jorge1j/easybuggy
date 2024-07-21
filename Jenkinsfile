@@ -51,7 +51,7 @@ pipeline {
         }
     //      stage('Kubernetes Deployment of Easy Buggy Web Application') {
 	   //  steps {
-	   //   withKubeConfig([credentialsId: 'kubelogin']) {
+	   //   withKubeConfig([credentialsId: 'KUBECONFIG']) {
 		  //  sh('kubectl delete all --all -n devsecops')
 		  //  sh ('kubectl apply -f deployment.yaml --namespace=devsecops')
 		  //   }
